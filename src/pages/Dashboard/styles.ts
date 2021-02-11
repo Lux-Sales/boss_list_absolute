@@ -41,8 +41,9 @@ export const Input = styled.div`
   background-color: #828ed6;
   padding-bottom: 15px;
   border-radius: 0 0 10px 10px;
+
   input {
-    margin: auto;
+    margin-left: 140px;
     background-color: ${shade(0.3, '#828ed6')};
     border-radius: 5px;
 
@@ -52,10 +53,13 @@ export const Input = styled.div`
   }
 
   select {
-    margin: auto;
+    margin-right: 70px;
     border-radius: 5px;
     background-color: ${shade(0.3, '#828ed6')};
     color: #000;
+    & + select {
+      margin-right: 150px;
+    }
   }
 `;
 

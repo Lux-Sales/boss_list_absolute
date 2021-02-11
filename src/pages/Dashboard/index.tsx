@@ -1,32 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header, Content, List, Input, CenterButton, Users } from './styles';
-import AddUserService from '../../service/AddUserService';
-import User from '../../models/User';
+import absoluteGif from '../../assets/Absolute.gif';
+
+interface User {
+  name: string;
+  vocation: string;
+  team: string;
+}
 
 const Dashboard: React.FC = () => {
   const [name, setName] = useState('');
   const [vocation, setVocation] = useState('');
   const [team, setTeam] = useState('');
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<User[]>(() => {
+    const localUsers = localStorage.getItem('@boss_list_absolute:users');
+    if (localUsers) {
+      return JSON.parse(localUsers);
+    } else return [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('@boss_list_absolute:users', JSON.stringify(users));
+  }, [users]);
 
   async function addUser() {
-    const addUser = new AddUserService();
     if (!name || !vocation || !team) {
       throw new Error('Campo não pode estar vazio');
     }
-    const user = new User(name, vocation, team);
+    const user = {
+      name,
+      vocation,
+      team,
+    };
 
     setUsers([...users, user]);
-    return await addUser.execute(user);
   }
 
   return (
     <>
       <Header>
-        <img
-          src="https://static.tibia.com/images/guildlogos/Absolute.gif"
-          alt="absolute_logo"
-        />
+        <img src={absoluteGif} alt="absolute_logo" />
         <h1> Absolute Bosses </h1>
       </Header>
       <Content>
