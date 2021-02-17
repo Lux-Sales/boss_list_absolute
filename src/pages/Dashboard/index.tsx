@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Header, Content, List, Input, CenterButton, Users } from './styles';
 import absoluteGif from '../../assets/Absolute.gif';
+import { getAllUsers, createUser } from '../../services/UserService';
+import { cleanList } from '../../services/ListService';
 
-interface User {
+export interface User {
+  id: number;
   name: string;
   vocation: string;
   team: string;
@@ -12,28 +15,30 @@ const Dashboard: React.FC = () => {
   const [name, setName] = useState('');
   const [vocation, setVocation] = useState('');
   const [team, setTeam] = useState('');
-  const [users, setUsers] = useState<User[]>(() => {
-    const localUsers = localStorage.getItem('@boss_list_absolute:users');
-    if (localUsers) {
-      return JSON.parse(localUsers);
-    } else return [];
-  });
+  const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
-    localStorage.setItem('@boss_list_absolute:users', JSON.stringify(users));
-  }, [users]);
+    getAllUsers().then(setUsers);
+  }, []);
 
-  async function addUser() {
+  function addUser() {
     if (!name || !vocation || !team) {
       throw new Error('Campo não pode estar vazio');
     }
     const user = {
+      id: 1,
       name,
       vocation,
       team,
     };
 
     setUsers([...users, user]);
+    createUser(user);
+  }
+
+  function deleteList() {
+    setUsers([]);
+    cleanList();
   }
 
   return (
@@ -41,6 +46,7 @@ const Dashboard: React.FC = () => {
       <Header>
         <img src={absoluteGif} alt="absolute_logo" />
         <h1> Absolute Bosses </h1>
+        <button onClick={deleteList}>Deletar lista</button>
       </Header>
       <Content>
         <strong> Nome </strong>
