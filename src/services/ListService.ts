@@ -9,9 +9,11 @@ interface data {
 }
 
 export const cleanList = async (): Promise<void> => {
-  const { data } = await axios.get<data>('http://localhost:8000/users/');
+  const { data } = await axios.get<data>(
+    'https://api-absolute.herokuapp.com/users',
+  );
   const list = data.results;
   list.forEach(user => {
-    axios.delete(`http://localhost:8000/users/${user.id}/`);
+    axios.delete(`https://api-absolute.herokuapp.com/users/${user.id}/`);
   });
 };
