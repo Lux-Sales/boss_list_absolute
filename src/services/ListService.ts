@@ -10,7 +10,7 @@ interface data {
 
 export const cleanList = async (): Promise<void> => {
   const { data } = await axios.get<data>(
-    'https://api-absolute.herokuapp.com/users',
+    'https://api-absolute.herokuapp.com/users/',
   );
   const list = data.results;
   list.forEach(user => {
