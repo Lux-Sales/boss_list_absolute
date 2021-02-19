@@ -8,11 +8,23 @@ export const Header = styled.header`
     border-radius: 50%;
   }
   h1 {
-    display: flex;
-    width: 100vh;
-    margin-right: 150px;
+    width: 30vh;
     margin-top: 50px;
     font-family: Big Shoulders Display, serif;
+    text-align: center;
+    margin-right: 200px;
+    height: 40px;
+  }
+  button {
+    cursor: pointer;
+    height: 50px;
+    margin-top: 50px;
+    margin-right: 20px;
+    border-radius: 10px;
+    background-color: #e61111;
+    &:hover {
+      background-color: ${shade(0.2, '#e61111')};
+    }
   }
 `;
 
