@@ -4,27 +4,29 @@ import { shade } from 'polished';
 export const Header = styled.header`
   display: flex;
   justify-content: space-between;
+
+  div {
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 30%;
+    h1 {
+      width: 30vh;
+      margin-top: 50px;
+      font-family: Big Shoulders Display, serif;
+      text-align: center;
+      margin-right: 200px;
+      height: 40px;
+    }
+    h2 {
+      width: 30vh;
+      margin-top: 50px;
+      font-family: Big Shoulders Display, serif;
+      text-align: center;
+      height: 40px;
+    }
+  }
   img {
     border-radius: 50%;
-  }
-  h1 {
-    width: 30vh;
-    margin-top: 50px;
-    font-family: Big Shoulders Display, serif;
-    text-align: center;
-    margin-right: 200px;
-    height: 40px;
-  }
-  button {
-    cursor: pointer;
-    height: 50px;
-    margin-top: 50px;
-    margin-right: 20px;
-    border-radius: 10px;
-    background-color: #e61111;
-    &:hover {
-      background-color: ${shade(0.2, '#e61111')};
-    }
   }
 `;
 
@@ -93,12 +95,31 @@ export const CenterButton = styled.div`
   }
 `;
 
-export const Users = styled.div`
+export const Players = styled.div`
   width: 100%;
   display: flex;
   span {
     margin: auto;
     width: 200px;
     text-align: center;
+  }
+`;
+export const Footer = styled.footer`
+  position: absolute;
+  height: 15%;
+  width: 50%;
+  left: 320px;
+  bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  button {
+    height: 100%;
+    width: 200px;
+    border-radius: 10px;
+    background-color: #0d4eda;
+    font-size: 25px;
+    &:hover {
+      background-color: ${shade(0.3, '#0d4eda')};
+    }
   }
 `;

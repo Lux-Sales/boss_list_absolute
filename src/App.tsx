@@ -1,11 +1,12 @@
 import React from 'react';
-import Dashboard from './pages/Dashboard';
+import Routes from './routes';
+import { BrowserRouter } from 'react-router-dom';
 
-const App: React.FC = () => {
-  return (
-    <>
-      <Dashboard />
-    </>
-  );
-};
+const App: React.FC = () => (
+  <>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
+  </>
+);
 export default App;
